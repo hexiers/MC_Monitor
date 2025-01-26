@@ -17,7 +17,7 @@
 
 QT_CHARTS_USE_NAMESPACE
 
-
+QT_BEGIN_NAMESPACE
 namespace Ui {
 class OsciView;
 }
@@ -26,6 +26,8 @@ namespace QtCharts {
     class QLineSeries;
     class QChart;
 }
+QT_END_NAMESPACE
+
 
 class OsciView : public QWidget
 {

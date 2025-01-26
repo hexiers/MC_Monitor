@@ -21,6 +21,7 @@ SOURCES += \
     src/port/comprotocol.cpp \
     src/port/fifo.cpp \
     ui/channelitem.cpp \
+    ui/ctrlmodeview.cpp \
     ui/osciview.cpp \
     ui/plotview.cpp \
     ui/pointdatabuffer.cpp
@@ -39,6 +40,7 @@ HEADERS += \
     src/port/serialport.h \
     src/views/Abstractview.h \
     ui/channelitem.h \
+    ui/ctrlmodeview.h \
     ui/oscilloscopeview.h \
     src/port/comprotocol.h \
     src/port/fifo.h \
@@ -47,6 +49,7 @@ HEADERS += \
     ui/pointdatabuffer.h
 
 FORMS += \
+    ui/ctrlmodeview.ui \
     ui/mainwindow.ui \
     ui/osciview.ui \
     ui/portsetbox.ui \

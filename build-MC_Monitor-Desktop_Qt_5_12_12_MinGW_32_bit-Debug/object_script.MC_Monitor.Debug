@@ -10,6 +10,7 @@ debug/test.o
 debug/comprotocol.o
 debug/fifo.o
 debug/channelitem.o
+debug/ctrlmodeview.o
 debug/osciview.o
 debug/plotview.o
 debug/pointdatabuffer.o
@@ -21,4 +22,5 @@ debug/moc_portmanager.o
 debug/moc_serialport.o
 debug/moc_Abstractview.o
 debug/moc_channelitem.o
+debug/moc_ctrlmodeview.o
 debug/moc_osciview.o

@@ -10,6 +10,7 @@ release/test.o
 release/comprotocol.o
 release/fifo.o
 release/channelitem.o
+release/ctrlmodeview.o
 release/osciview.o
 release/plotview.o
 release/pointdatabuffer.o
@@ -21,4 +22,5 @@ release/moc_portmanager.o
 release/moc_serialport.o
 release/moc_Abstractview.o
 release/moc_channelitem.o
+release/moc_ctrlmodeview.o
 release/moc_osciview.o

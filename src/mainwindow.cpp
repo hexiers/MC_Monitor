@@ -15,8 +15,6 @@ MainWindow::MainWindow(QWidget *parent)
     m_port = new PortManager(ui->toolBar, ui->actionPort_Settings);
 
 
-
-
     // ***********   示波器调试  ********************
     m_oscilloscopeView = new OsciView();
     QDockWidget *align = nullptr;
@@ -26,8 +24,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     this->addDockWidget(Qt::BottomDockWidgetArea, dock);
     align = dock;
-
-    // ***********   示波器调试  ********************
+    // ***********   end of 示波器调试  ********************
 
 
 
@@ -46,38 +43,42 @@ MainWindow::MainWindow(QWidget *parent)
     ui->statusBar->addWidget(m_rxCntLabel);
     ui->statusBar->addWidget(m_txCntLabel);
 
-
+    // ***********   关键数据列表  ********************
         QStringList header;
-        header << "参数名" << "数值" <<"单位" ;
+        header << "Name" << "Value" <<"Units" ;
 
         ui->tableWidget->setColumnCount(header.size());                        // 设置表格的列数
         ui->tableWidget->setHorizontalHeaderLabels(header);                    // 设置水平头
-        ui->tableWidget->setRowCount(20);                                       // 设置总行数
+
+        ui->tableWidget->setRowCount(35);                                       // 设置总行数
         ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);   // 设置表结构默认不可编辑
 
         ui->tableWidget->verticalHeader()->setVisible(false);
 
-        ui->tableWidget->setShowGrid(false);
+        ui->tableWidget->setShowGrid(true);
 
         ui->tableWidget->verticalHeader()->setStretchLastSection(true); //均分各行
 
-        ui->tableWidget->horizontalHeader()->setStretchLastSection(true); //最后一列铺满最后
+        ui->tableWidget->horizontalHeader()->setStretchLastSection(false); //最后一列铺满最后
 
-//        QString columName;
 
-//        columName.append("IdFbk") ;
+    for (int i =0;i<ui->tableWidget->rowCount();++i)
+    {
+        createTablewidgetItems(i,0,criticalValTab[i][0]);
+        createTablewidgetItems(i,1,criticalValTab[i][1]);
+        createTablewidgetItems(i,2,criticalValTab[i][2]);
+    }
 
-//        QTableWidgetItem *item = new QTableWidgetItem(columName);
+   // ***********   end of 关键数据列表  ********************
 
-//        item->setTextAlignment(Qt::AlignLeft);//文本居左
 
-//        ui->tableWidget->setItem(0,0,item);//添加到表格中指定位置
+  // ***********   控制面板  ********************
 
-        ui->tableWidget->setItem(0,0,new QTableWidgetItem("IdFbk"));
-        ui->tableWidget->setItem(1,0,new QTableWidgetItem("IqFbk"));
-        ui->tableWidget->setItem(2,0,new QTableWidgetItem("spdFbk"));
-        ui->tableWidget->setItem(3,0,new QTableWidgetItem("spdRef"));
 
+
+
+
+    // ***********   end of 控制面板  ********************
 
     connect(ui->portRunAction, SIGNAL(triggered()), this, SLOT(changeRunFlag()));
     connect(ui->portSwitchAction, SIGNAL(triggered()), this, SLOT(onPortSwitchActionTriggered()));
@@ -219,6 +220,15 @@ void MainWindow::onSecTimerTimeout()
 //    ui->PtxtRecMess->appendPlainText(str);
 
 }
+
+void MainWindow::createTablewidgetItems(int rowNo,int colNo,QString varName, int alignID)
+{
+    QTableWidgetItem *item = new QTableWidgetItem(varName);
+    item->setTextAlignment(alignID);    //文本居中
+    ui->tableWidget->setItem(rowNo,colNo,item);                     //添加到表格中指定位置
+}
+
+
 
 
 void MainWindow::on_actionSend_released()

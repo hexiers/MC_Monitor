@@ -8,6 +8,7 @@ OsciView::OsciView(QWidget *parent) :
 {
     ui->setupUi(this);
 
+
     m_chart = new QChart;
 
     m_xRange = 500;
@@ -34,9 +35,6 @@ OsciView::OsciView(QWidget *parent) :
 OsciView::~OsciView()
 {
     delete ui;
-
-    delete  m_chart;
-    delete  m_timer;
 }
 
 void OsciView::channelListInit(){
